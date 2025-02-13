@@ -1,6 +1,6 @@
 #  SecureStore - A lightweight Keychain wrapper for Swift
 
-This package is a Swift wrapper around the Keychain managment mechanisms contained in the `Security` module.
+This package is a Swift wrapper around the Keychain managment mechanisms contained in the `Security` framework.
 
 > Note: The packages main purpose is to provide an easy way for storing secret values in the keychain and thus it hides many options for the sake of a simpler API 
 
