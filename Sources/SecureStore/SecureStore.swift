@@ -12,7 +12,7 @@ public class SecureStore {
     
     /// Create a secure store instance with a given domain
     /// - Parameter domain: The domain is used to tag the secrets saved in the secure store
-    init(domain: String? = nil) {
+    public init(domain: String? = nil) {
         guard let domain = domain ?? Bundle.main.bundleIdentifier
         else { fatalError("Domain should not be nil if the bundle identifier is nil") }
         self.domain = domain
@@ -25,7 +25,7 @@ public class SecureStore {
     ///   - secret: Secret to store
     ///   - tag: Key to identify the secret
     ///   See ``store(secret: Data, for tag: String)`` for more details
-    func store(secret: String, for tag: String) throws {
+    public func store(secret: String, for tag: String) throws {
         guard let data = secret.data(using: .utf8)
         else { throw SecureStoreError.invalidInput }
         
@@ -36,7 +36,7 @@ public class SecureStore {
     /// - Parameters:
     ///   - secret: Secret to store
     ///   - tag: Key to identify the secret
-    func store(secret: Data, for tag: String) throws {
+    public func store(secret: Data, for tag: String) throws {
         let updated = try self.updateItem(secret, for: tag)
         if !updated {
             let inserted = try self.storeItem(secret, for: tag)
@@ -49,7 +49,7 @@ public class SecureStore {
     // MARK: Retrieving
     
     /// Get an item from the keychain
-    func retrieve(for tag: String) -> Data? {
+    public func retrieve(for tag: String) -> Data? {
         guard let tag = try? self.tag(for: tag) else { return nil }
         let getQuery: [String: Any] = [
             kSecClass as String: kSecClassKey,
@@ -65,7 +65,7 @@ public class SecureStore {
     }
     
     /// Get a string item from the keychain
-    func retrieveString(for tag: String) -> String? {
+    public func retrieveString(for tag: String) -> String? {
         if let data = retrieve(for: tag), let string = String(data: data, encoding: .utf8) {
             return string
         }
@@ -78,7 +78,7 @@ public class SecureStore {
     /// Delete the item of a tag
     /// - Parameters:
     ///    - tag: Key of the secret
-    func delete(for tag: String) throws {
+    public func delete(for tag: String) throws {
         let tag = try self.tag(for: tag)
         let getQuery: [String: Any] = [
             kSecClass as String: kSecClassKey,
