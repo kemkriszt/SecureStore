@@ -99,7 +99,7 @@ extension SecureStore {
     ///   - secret: Secret to store
     ///   - tag: Key to identify the secret
     ///   See ``store(secret: Data, for tag: String)`` for more details
-    func store(secret: Data, for tag: any RawRepresentable<String>) throws {
+    public func store(secret: Data, for tag: any RawRepresentable<String>) throws {
         try store(secret: secret, for: tag.rawValue)
     }
     
@@ -108,28 +108,28 @@ extension SecureStore {
     ///   - secret: Secret to store
     ///   - tag: Key to identify the secret
     ///   See ``store(secret: Data, for tag: String)`` for more details
-    func store(secret: String, for tag: any RawRepresentable<String>) throws {
+    public func store(secret: String, for tag: any RawRepresentable<String>) throws {
         try store(secret: secret, for: tag.rawValue)
     }
     
     /// Get an item from the keychain
     /// - Parameters:
     ///    - tag: Key of the secret
-    func retrieve(for tag: any RawRepresentable<String>) -> Data? {
+    public func retrieve(for tag: any RawRepresentable<String>) -> Data? {
         retrieve(for: tag.rawValue)
     }
     
     /// Get an item from the keychain
     /// - Parameters:
     ///    - tag: Key of the secret
-    func retrieveString(for tag: any RawRepresentable<String>) -> String? {
+    public func retrieveString(for tag: any RawRepresentable<String>) -> String? {
         retrieveString(for: tag.rawValue)
     }
     
     /// Delete the item of a tag
     /// - Parameters:
     ///    - tag: Key of the secret
-    func delete(for tag: any RawRepresentable<String>) throws {
+    public func delete(for tag: any RawRepresentable<String>) throws {
         try delete(for: tag.rawValue)
     }
 }
